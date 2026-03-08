@@ -419,8 +419,23 @@ function showScene(i){
   document.querySelectorAll(".dot")[i].classList.add("active");
 }
 
+
+async function playWelcomeVoice() {
+  try {
+    const res = await fetch("/api/voice", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({text: "Welcome to My Space. Your name. Your seat. Your place. We have been waiting for you. We are opening soon."})
+    });
+    if (!res.ok) return;
+    const blob = await res.blob();
+    const audio = new Audio(URL.createObjectURL(blob));
+    audio.play();
+  } catch(e) { console.log("voice error", e); }
+}
+
 function startVideo(){
-  document.getElementById("playBtn").classList.add("hidden");
+  document.getElementById("playBtn").classList.add("hidden"); playWelcomeVoice();
   playing=true; cur=0; prog=0;
   showScene(0); runProg();
 }
