@@ -44,6 +44,21 @@ def generate():
 def health():
     return jsonify({'status': 'ok'})
 
+
+@app.route("/api/voice", methods=["POST"])
+def generate_voice():
+    try:
+        from openai import OpenAI; import io
+        client=OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        data=request.get_json()
+        text=data.get("text","Welcome to My Space.")
+        resp=client.audio.speech.create(model="tts-1",voice="nova",input=text)
+        buf=io.BytesIO()
+        [buf.write(chunk) for chunk in resp.iter_bytes()]
+        buf.seek(0)
+        from flask import send_file; return send_file(buf,mimetype="audio/mpeg",as_attachment=False)
+    except Exception as e: return jsonify({"error":str(e)}),500
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
