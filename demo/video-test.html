@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Space Cafe - Story</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Georgia,serif}
+.wrap{width:900px}
+.screen{width:900px;height:506px;background:#1a0e00;position:relative;overflow:hidden;border:2px solid rgba(245,200,66,0.4)}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;pointer-events:none}
+.scene.active{opacity:1;pointer-events:all}
+.playbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:99;cursor:pointer;background:rgba(0,0,0,0.35);transition:opacity 0.4s}
+.playbtn.hidden{opacity:0;pointer-events:none}
+.playcircle{width:90px;height:90px;background:#f5c842;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s}
+.playcircle:hover{transform:scale(1.1);box-shadow:0 0 40px rgba(245,200,66,0.6)}
+.tri{width:0;height:0;border-top:22px solid transparent;border-bottom:22px solid transparent;border-left:36px solid #1a0e00;margin-left:8px}
+.prog{height:5px;background:rgba(245,200,66,0.15)}
+.progfill{height:100%;background:#f5c842;width:0;transition:width 0.1s linear}
+.dots{display:flex;justify-content:center;gap:12px;padding:18px 0;background:#0a0a0a}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(245,200,66,0.2);border:none;cursor:pointer;transition:all 0.3s}
+.dot.active{background:#f5c842;transform:scale(1.4)}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 30px rgba(245,200,66,0.3),0 0 60px rgba(245,200,66,0.1)}50%{box-shadow:0 0 70px rgba(245,200,66,0.8),0 0 140px rgba(245,200,66,0.3)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="screen" id="screen">
+
+<!-- SCENE 1: STARBUCKS VS MY SPACE -->
+<div class="scene active" id="s0" style="background:linear-gradient(135deg,#1a0e00,#2d1a00)">
+<svg width="100%" height="100%" viewBox="0 0 900 506" xmlns="http://www.w3.org/2000/svg">
+  <text x="200" y="230" text-anchor="middle" font-family="Georgia,serif" font-size="48" font-weight="900" fill="rgba(255,255,255,0.18)">STARBUCKS</text>
+  <line x1="60" y1="215" x2="340" y2="245" stroke="#f5c842" stroke-width="5" opacity="0.8"/>
+  <line x1="60" y1="245" x2="340" y2="215" stroke="#f5c842" stroke-width="5" opacity="0.8"/>
+  <text x="450" y="240" text-anchor="middle" font-size="64" fill="#f5c842" opacity="0.9">&#8594;</text>
+  <text x="680" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="44" font-weight="900" fill="#f5c842">MY SPACE</text>
+  <text x="680" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="rgba(253,246,227,0.55)" font-style="italic">your name. your seat. your place.</text>
+  <text x="450" y="390" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="900" fill="#fdf6e3">You have <tspan font-style="italic" fill="#f5c842">outgrown</tspan> the queue.</text>
+  <text x="450" y="436" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(253,246,227,0.35)" letter-spacing="5">A BETTER PLACE IS WAITING</text>
+</svg>
+</div>
+
+<!-- SCENE 2: CAFE WITH ANIMATED PEOPLE -->
+<div class="scene" id="s1">
+<svg width="100%" height="100%" viewBox="0 0 900 506" xmlns="http://www.w3.org/2000/svg">
+  <!-- walls + floor -->
+  <rect x="0" y="0" width="900" height="380" fill="#2d1a00"/>
+  <rect x="0" y="380" width="900" height="126" fill="#1a0e00"/>
+  <line x1="0" y1="380" x2="900" y2="380" stroke="#f5c842" stroke-width="2" opacity="0.25"/>
+  <!-- LEFT BOOKSHELF -->
+  <rect x="8" y="25" width="155" height="340" fill="#120800" stroke="#f5c842" stroke-width="1.5" rx="2" opacity="0.95"/>
+  <rect x="8" y="115" width="155" height="7" fill="#3d2500"/><rect x="8" y="197" width="155" height="7" fill="#3d2500"/><rect x="8" y="279" width="155" height="7" fill="#3d2500"/>
+  <rect x="16" y="33" width="13" height="78" fill="#f5c842" opacity="0.8" rx="1"/>
+  <rect x="32" y="39" width="11" height="72" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="46" y="31" width="15" height="80" fill="#f5c842" opacity="0.5" rx="1"/>
+  <rect x="64" y="37" width="10" height="74" fill="#fdf6e3" opacity="0.7" rx="1"/>
+  <rect x="78" y="29" width="14" height="82" fill="#f5c842" opacity="0.9" rx="1"/>
+  <rect x="96" y="35" width="12" height="76" fill="#fdf6e3" opacity="0.4" rx="1"/>
+  <rect x="112" y="32" width="13" height="79" fill="#f5c842" opacity="0.6" rx="1"/>
+  <rect x="128" y="38" width="12" height="73" fill="#fdf6e3" opacity="0.6" rx="1"/>
+  <rect x="16" y="124" width="11" height="69" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="30" y="120" width="15" height="73" fill="#f5c842" opacity="0.6" rx="1"/>
+  <rect x="48" y="126" width="10" height="67" fill="#fdf6e3" opacity="0.4" rx="1"/>
+  <rect x="62" y="122" width="16" height="71" fill="#f5c842" opacity="0.7" rx="1"/>
+  <rect x="82" y="124" width="12" height="69" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="98" y="120" width="13" height="73" fill="#f5c842" opacity="0.5" rx="1"/>
+  <rect x="115" y="125" width="11" height="67" fill="#fdf6e3" opacity="0.6" rx="1"/>
+  <rect x="130" y="122" width="14" height="71" fill="#f5c842" opacity="0.4" rx="1"/>
+  <rect x="16" y="206" width="14" height="69" fill="#f5c842" opacity="0.5" rx="1"/>
+  <rect x="33" y="202" width="11" height="73" fill="#fdf6e3" opacity="0.4" rx="1"/>
+  <rect x="48" y="208" width="15" height="67" fill="#f5c842" opacity="0.7" rx="1"/>
+  <rect x="66" y="204" width="10" height="71" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="80" y="206" width="13" height="69" fill="#f5c842" opacity="0.6" rx="1"/>
+  <rect x="97" y="202" width="12" height="73" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="113" y="207" width="14" height="67" fill="#f5c842" opacity="0.4" rx="1"/>
+  <rect x="130" y="204" width="11" height="71" fill="#fdf6e3" opacity="0.6" rx="1"/>
+  <!-- RIGHT BOOKSHELF -->
+  <rect x="737" y="25" width="155" height="340" fill="#120800" stroke="#f5c842" stroke-width="1.5" rx="2" opacity="0.95"/>
+  <rect x="737" y="115" width="155" height="7" fill="#3d2500"/><rect x="737" y="197" width="155" height="7" fill="#3d2500"/><rect x="737" y="279" width="155" height="7" fill="#3d2500"/>
+  <rect x="745" y="33" width="13" height="78" fill="#f5c842" opacity="0.7" rx="1"/>
+  <rect x="761" y="39" width="11" height="72" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="775" y="31" width="15" height="80" fill="#f5c842" opacity="0.5" rx="1"/>
+  <rect x="793" y="37" width="10" height="74" fill="#fdf6e3" opacity="0.6" rx="1"/>
+  <rect x="807" y="29" width="14" height="82" fill="#f5c842" opacity="0.8" rx="1"/>
+  <rect x="825" y="35" width="12" height="76" fill="#fdf6e3" opacity="0.4" rx="1"/>
+  <rect x="841" y="32" width="13" height="79" fill="#f5c842" opacity="0.6" rx="1"/>
+  <rect x="857" y="38" width="18" height="73" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="745" y="124" width="11" height="69" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="759" y="120" width="15" height="73" fill="#f5c842" opacity="0.6" rx="1"/>
+  <rect x="777" y="126" width="10" height="67" fill="#fdf6e3" opacity="0.4" rx="1"/>
+  <rect x="791" y="122" width="16" height="71" fill="#f5c842" opacity="0.7" rx="1"/>
+  <rect x="811" y="124" width="12" height="69" fill="#fdf6e3" opacity="0.5" rx="1"/>
+  <rect x="827" y="120" width="13" height="73" fill="#f5c842" opacity="0.5" rx="1"/>
+  <rect x="843" y="125" width="11" height="67" fill="#fdf6e3" opacity="0.6" rx="1"/>
+  <rect x="857" y="122" width="14" height="71" fill="#f5c842" opacity="0.4" rx="1"/>
+  <!-- CENTER WINDOW -->
+  <rect x="316" y="18" width="268" height="258" fill="#0a1520" rx="4" stroke="#f5c842" stroke-width="3" opacity="0.97"/>
+  <line x1="450" y1="18" x2="450" y2="276" stroke="#f5c842" stroke-width="2.5" opacity="0.65"/>
+  <line x1="316" y1="148" x2="584" y2="148" stroke="#f5c842" stroke-width="2.5" opacity="0.65"/>
+  <ellipse cx="450" cy="148" rx="100" ry="90" fill="#fffde0" opacity="0.04"><animate attributeName="opacity" values="0.03;0.08;0.03" dur="4s" repeatCount="indefinite"/></ellipse>
+  <!-- TABLE 1 left -->
+  <rect x="152" y="332" width="205" height="14" fill="#3d2500" rx="4"/>
+  <rect x="178" y="346" width="10" height="36" fill="#3d2500" rx="3"/>
+  <rect x="338" y="346" width="10" height="36" fill="#3d2500" rx="3"/>
+  <!-- laptop -->
+  <rect x="182" y="304" width="72" height="30" fill="#0a1525" stroke="#f5c842" stroke-width="1" rx="2" opacity="0.95"/>
+  <rect x="184" y="306" width="68" height="26" rx="1"><animate attributeName="fill" values="#1a3a5a;#1a4a7a;#1a3060;#1a3a5a" dur="3s" repeatCount="indefinite"/></rect>
+  <rect x="170" y="334" width="98" height="5" fill="#2d1a00" stroke="#f5c842" stroke-width="0.8" rx="1" opacity="0.85"/>
+  <!-- TABLE 2 center -->
+  <rect x="358" y="308" width="184" height="14" fill="#3d2500" rx="4"/>
+  <rect x="384" y="322" width="10" height="52" fill="#3d2500" rx="3"/>
+  <rect x="522" y="322" width="10" height="52" fill="#3d2500" rx="3"/>
+  <!-- coffee cup -->
+  <rect x="437" y="281" width="26" height="29" fill="#f5c842" opacity="0.88" rx="3"/>
+  <ellipse cx="450" cy="281" rx="13" ry="4" fill="#f5c842" opacity="0.95"/>
+  <path d="M463,288 Q475,288 475,300 Q475,311 463,311" fill="none" stroke="#f5c842" stroke-width="4" stroke-linecap="round" opacity="0.88"/>
+  <line x1="444" y1="278" x2="441" y2="260" stroke="#fdf6e3" stroke-width="2.5" stroke-linecap="round"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/></line>
+  <line x1="450" y1="278" x2="450" y2="258" stroke="#fdf6e3" stroke-width="2.5" stroke-linecap="round"><animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.4s" repeatCount="indefinite"/></line>
+  <line x1="456" y1="278" x2="459" y2="260" stroke="#fdf6e3" stroke-width="2.5" stroke-linecap="round"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" begin="0.8s" repeatCount="indefinite"/></line>
+  <!-- TABLE 3 right -->
+  <rect x="543" y="332" width="205" height="14" fill="#3d2500" rx="4"/>
+  <rect x="569" y="346" width="10" height="36" fill="#3d2500" rx="3"/>
+  <rect x="729" y="346" width="10" height="36" fill="#3d2500" rx="3"/>
+  <!-- open book -->
+  <path d="M588,330 Q614,311 648,316 Q682,311 708,330 Z" fill="#fdf6e3" opacity="0.75"/>
+  <line x1="648" y1="316" x2="648" y2="330" stroke="#7a6a55" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- PERSON 1: studying left -->
+  <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="4s" repeatCount="indefinite"/>
+    <ellipse cx="252" cy="316" rx="27" ry="23" fill="#f5c842" opacity="0.75"/>
+    <rect x="245" y="291" width="14" height="17" fill="#f5c842" opacity="0.8" rx="3"/>
+    <ellipse cx="252" cy="275" rx="23" ry="25" fill="#f5c842" opacity="0.9"/>
+    <path d="M230,269 Q229,250 241,242 Q252,237 263,242 Q275,250 274,271" fill="#1a0e00"/>
+    <ellipse cx="244" cy="276" rx="2.8" ry="2.3" fill="#1a0e00"/>
+    <ellipse cx="260" cy="276" rx="2.8" ry="2.3" fill="#1a0e00"/>
+    <path d="M228,308 Q212,319 217,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.75"/>
+    <path d="M276,308 Q292,319 287,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.75"/>
+  </g>
+
+  <!-- PERSON 2: reading at window -->
+  <g><animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="5s" begin="1s" repeatCount="indefinite"/>
+    <ellipse cx="450" cy="262" rx="25" ry="23" fill="#f5c842" opacity="0.72"/>
+    <rect x="443" y="238" width="14" height="16" fill="#f5c842" opacity="0.8" rx="3"/>
+    <ellipse cx="450" cy="220" rx="21" ry="23" fill="#f5c842" opacity="0.88"/>
+    <path d="M430,213 Q429,194 441,186 Q450,180 459,186 Q471,194 470,215" fill="#2d1a00"/>
+    <path d="M429,217 Q424,238 426,262" fill="none" stroke="#2d1a00" stroke-width="10" stroke-linecap="round"/>
+    <path d="M471,217 Q476,238 474,262" fill="none" stroke="#2d1a00" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="443" cy="222" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <ellipse cx="457" cy="222" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <path d="M445,231 Q450,236 455,231" fill="none" stroke="#1a0e00" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M427,254 Q421,266 423,281" stroke="#f5c842" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.72"/>
+    <path d="M473,254 Q479,266 477,281" stroke="#f5c842" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.72"/>
+    <rect x="427" y="281" width="46" height="33" fill="#fdf6e3" opacity="0.88" rx="2"/>
+    <line x1="450" y1="281" x2="450" y2="314" stroke="#7a6a55" stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+  <!-- PERSON 3a: talking right table -->
+  <g><animateTransform attributeName="transform" type="translate" values="0,0;3,-1;0,0;-3,1;0,0" dur="6s" repeatCount="indefinite"/>
+    <ellipse cx="612" cy="316" rx="25" ry="21" fill="#f5c842" opacity="0.72"/>
+    <rect x="605" y="293" width="14" height="16" fill="#f5c842" opacity="0.78" rx="3"/>
+    <ellipse cx="612" cy="276" rx="21" ry="23" fill="#f5c842" opacity="0.82"/>
+    <path d="M592,270 Q591,251 603,243 Q612,237 621,243 Q633,251 632,272" fill="#1a0e00"/>
+    <ellipse cx="604" cy="277" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <ellipse cx="620" cy="277" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <path d="M606,286 Q612,291 618,286" fill="none" stroke="#1a0e00" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M589,308 Q574,319 578,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.72"/>
+    <path d="M635,308 Q650,319 646,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.72"/>
+  </g>
+
+  <!-- PERSON 3b: talking right table -->
+  <g><animateTransform attributeName="transform" type="translate" values="0,0;-3,1;0,0;3,-1;0,0" dur="6s" begin="0.6s" repeatCount="indefinite"/>
+    <ellipse cx="690" cy="316" rx="25" ry="21" fill="#f5c842" opacity="0.66"/>
+    <rect x="683" y="293" width="14" height="16" fill="#f5c842" opacity="0.72" rx="3"/>
+    <ellipse cx="690" cy="276" rx="21" ry="23" fill="#f5c842" opacity="0.78"/>
+    <path d="M670,270 Q669,251 681,243 Q690,237 699,243 Q711,251 710,272" fill="#2d1a00"/>
+    <path d="M669,274 Q664,292 666,314" fill="none" stroke="#2d1a00" stroke-width="9" stroke-linecap="round"/>
+    <path d="M711,274 Q716,292 714,314" fill="none" stroke="#2d1a00" stroke-width="9" stroke-linecap="round"/>
+    <ellipse cx="682" cy="277" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <ellipse cx="698" cy="277" rx="2.5" ry="2.2" fill="#1a0e00"/>
+    <path d="M684,286 Q690,291 696,286" fill="none" stroke="#1a0e00" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M667,308 Q652,319 656,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.66"/>
+    <path d="M713,308 Q728,319 724,334" stroke="#f5c842" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.66"/>
+  </g>
+
+  <!-- ambient glow -->
+  <circle cx="252" cy="200" r="90" fill="#f5c842" opacity="0"><animate attributeName="opacity" values="0;0.04;0" dur="4s" repeatCount="indefinite"/></circle>
+  <circle cx="650" cy="200" r="90" fill="#f5c842" opacity="0"><animate attributeName="opacity" values="0;0.04;0" dur="5s" begin="1.2s" repeatCount="indefinite"/></circle>
+
+  <text x="450" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="900" fill="#fdf6e3">Real people. <tspan font-style="italic" fill="#f5c842">Real moments.</tspan></text>
+  <text x="450" y="468" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="rgba(253,246,227,0.4)" letter-spacing="5">STUDENTS  CREATIVES  DREAMERS</text>
+</svg>
+</div>
+
+<!-- SCENE 3: COFFEE -->
+<div class="scene" id="s2" style="background:linear-gradient(135deg,#2d1a00,#1a0e00)">
+<svg width="100%" height="100%" viewBox="0 0 900 506" xmlns="http://www.w3.org/2000/svg">
+  <rect x="340" y="200" width="220" height="160" fill="#f5c842" rx="10" opacity="0.92"/>
+  <ellipse cx="450" cy="200" rx="110" ry="20" fill="#f5c842"/>
+  <ellipse cx="450" cy="200" rx="92" ry="14" fill="#3d2500"/>
+  <path d="M560,232 Q625,232 625,280 Q625,328 560,328" fill="none" stroke="#f5c842" stroke-width="24" stroke-linecap="round" opacity="0.92"/>
+  <ellipse cx="450" cy="365" rx="148" ry="24" fill="#f5c842" opacity="0.82"/>
+  <ellipse cx="450" cy="361" rx="106" ry="13" fill="#2d1a00" opacity="0.4"/>
+  <path d="M410,196 Q398,155 410,122 Q422,89 410,58" fill="none" stroke="#fdf6e3" stroke-width="5" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.2;0.65;0.2" dur="2.2s" repeatCount="indefinite"/>
+    <animate attributeName="d" values="M410,196 Q398,155 410,122 Q422,89 410,58;M410,196 Q422,155 410,122 Q398,89 410,58;M410,196 Q398,155 410,122 Q422,89 410,58" dur="2.2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M450,193 Q438,150 450,116 Q462,82 450,50" fill="none" stroke="#fdf6e3" stroke-width="5" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.45;1;0.45" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+    <animate attributeName="d" values="M450,193 Q438,150 450,116 Q462,82 450,50;M450,193 Q462,150 450,116 Q438,82 450,50;M450,193 Q438,150 450,116 Q462,82 450,50" dur="2.6s" begin="0.4s" repeatCount="indefinite"/>
+  </path>
+  <path d="M490,196 Q502,155 490,122 Q478,89 490,58" fill="none" stroke="#fdf6e3" stroke-width="5" stroke-linecap="round">
+    <animate attributeName="opacity" values="0.2;0.65;0.2" dur="2.2s" begin="0.8s" repeatCount="indefinite"/>
+  </path>
+  <text x="450" y="436" text-anchor="middle" font-family="Georgia,serif" font-size="28" font-weight="900" fill="#fdf6e3">Coffee as good as <tspan font-style="italic" fill="#f5c842">everything else.</tspan></text>
+  <text x="450" y="474" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="rgba(253,246,227,0.38)" letter-spacing="5">SINGLE ORIGIN  ·  SPECIALTY GRADE</text>
+</svg>
+</div>
+
+<!-- SCENE 4: IDENTITY -->
+<div class="scene" id="s3" style="background:linear-gradient(135deg,#1a0e00,#2d1a00)">
+<svg width="100%" height="100%" viewBox="0 0 900 506" xmlns="http://www.w3.org/2000/svg">
+  <text x="450" y="130" text-anchor="middle" font-family="Georgia,serif" font-size="54" font-weight="900" letter-spacing="8" fill="#f5c842">AMBITIOUS<animate attributeName="opacity" values="0.15;0.8;0.15" dur="4s" repeatCount="indefinite"/></text>
+  <text x="450" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="82" font-weight="900" letter-spacing="6" fill="#f5c842">PROUD<animate attributeName="opacity" values="0.7;1;0.7" dur="3s" begin="0.6s" repeatCount="indefinite"/></text>
+  <text x="450" y="326" text-anchor="middle" font-family="Georgia,serif" font-size="54" font-weight="900" letter-spacing="8" fill="#f5c842">CREATIVE<animate attributeName="opacity" values="0.15;0.8;0.15" dur="4s" begin="1.2s" repeatCount="indefinite"/></text>
+  <text x="450" y="418" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="900" fill="#fdf6e3">Being here says <tspan font-style="italic" fill="#f5c842">something good</tspan> about you.</text>
+  <text x="450" y="458" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="rgba(253,246,227,0.38)" letter-spacing="5">COME AS YOU ARE  ·  STAY AS LONG AS YOU NEED</text>
+</svg>
+</div>
+
+<!-- SCENE 5: LOGO REVEAL -->
+<div class="scene" id="s4" style="background:#1a0e00">
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+    <div id="logoBox" style="width:220px;height:220px;border-radius:50%;overflow:hidden;animation:glowPulse 3s ease-in-out infinite;flex-shrink:0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="220" height="220">
+  <defs>
+    <clipPath id="outerClip">
+      <circle cx="250" cy="250" r="230"/>
+    </clipPath>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2d1a00"/>
+      <stop offset="100%" stop-color="#1a0e00"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer ring - dark -->
+  <circle cx="250" cy="250" r="245" fill="#1a0e00"/>
+
+  <!-- Gold border ring -->
+  <circle cx="250" cy="250" r="240" fill="none" stroke="#f5c842" stroke-width="3"/>
+  <circle cx="250" cy="250" r="225" fill="none" stroke="#f5c842" stroke-width="1" opacity="0.4"/>
+
+  <!-- Inner background -->
+  <circle cx="250" cy="250" r="222" fill="url(#bgGrad)"/>
+
+  <!-- ── TEXT RING TOP (curved like Starbucks) ── -->
+  <path id="topArc" d="M 60,250 A 190,190 0 0,1 440,250" fill="none"/>
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="900" fill="#f5c842" letter-spacing="14">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">MY SPACE CAFÉ</textPath>
+  </text>
+
+  <!-- ── TEXT RING BOTTOM ── -->
+  <path id="bottomArc" d="M 75,265 A 185,185 0 0,0 425,265" fill="none"/>
+  <text font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#f5c842" letter-spacing="8" opacity="0.8">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">EST. 2025 · YOUR CITY</textPath>
+  </text>
+
+  <!-- ── STAR DIVIDERS (like Starbucks) ── -->
+  <!-- Left star -->
+  <g transform="translate(82, 258)">
+    <polygon points="0,-7 2,-2 7,-2 3,1 5,7 0,3 -5,7 -3,1 -7,-2 -2,-2" fill="#f5c842"/>
+  </g>
+  <!-- Right star -->
+  <g transform="translate(418, 258)">
+    <polygon points="0,-7 2,-2 7,-2 3,1 5,7 0,3 -5,7 -3,1 -7,-2 -2,-2" fill="#f5c842"/>
+  </g>
+
+  <!-- ── CENTRAL FIGURE: Person reading at a window ── -->
+
+  <!-- Window frame background -->
+  <rect x="155" y="148" width="190" height="195" rx="4" fill="#f5c842" opacity="0.08"/>
+
+  <!-- Window cross frame -->
+  <rect x="158" y="151" width="184" height="189" rx="3" fill="none" stroke="#f5c842" stroke-width="2.5" opacity="0.5"/>
+  <line x1="250" y1="151" x2="250" y2="340" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="158" y1="245" x2="342" y2="245" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+
+  <!-- ── FIGURE sitting at window ── -->
+
+  <!-- Chair / seat base -->
+  <rect x="195" y="310" width="110" height="8" rx="4" fill="#f5c842" opacity="0.7"/>
+  <rect x="205" y="318" width="8" height="20" rx="2" fill="#f5c842" opacity="0.5"/>
+  <rect x="287" y="318" width="8" height="20" rx="2" fill="#f5c842" opacity="0.5"/>
+
+  <!-- Table -->
+  <rect x="168" y="280" width="164" height="6" rx="3" fill="#f5c842"/>
+  <rect x="200" y="286" width="6" height="28" rx="2" fill="#f5c842" opacity="0.6"/>
+  <rect x="294" y="286" width="6" height="28" rx="2" fill="#f5c842" opacity="0.6"/>
+
+  <!-- Open book on table -->
+  <path d="M 205,280 Q 215,265 250,268 Q 285,265 295,280 Z" fill="#fdf6e3" opacity="0.9"/>
+  <line x1="250" y1="268" x2="250" y2="280" stroke="#1a0e00" stroke-width="1.5" opacity="0.6"/>
+  <!-- Book lines left page -->
+  <line x1="215" y1="272" x2="246" y2="272" stroke="#1a0e00" stroke-width="1" opacity="0.3"/>
+  <line x1="213" y1="276" x2="246" y2="276" stroke="#1a0e00" stroke-width="1" opacity="0.3"/>
+  <!-- Book lines right page -->
+  <line x1="254" y1="272" x2="285" y2="272" stroke="#1a0e00" stroke-width="1" opacity="0.3"/>
+  <line x1="254" y1="276" x2="287" y2="276" stroke="#1a0e00" stroke-width="1" opacity="0.3"/>
+
+  <!-- Coffee cup on table -->
+  <rect x="298" y="265" width="26" height="15" rx="3" fill="#f5c842" opacity="0.9"/>
+  <path d="M 324,269 Q 334,269 334,275 Q 334,280 324,280" fill="none" stroke="#f5c842" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+  <ellipse cx="311" cy="265" rx="13" ry="3" fill="#f5c842"/>
+  <!-- Steam from cup -->
+  <path d="M 306,262 Q 304,256 306,250" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 313,262 Q 311,254 313,246" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 320,262 Q 318,256 320,250" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Person body -->
+  <!-- Torso -->
+  <path d="M 222,278 Q 220,255 218,235 L 250,228 L 282,235 Q 280,255 278,278 Z" fill="#f5c842" opacity="0.85"/>
+
+  <!-- Arms resting on table / book -->
+  <path d="M 218,255 Q 205,262 210,278" fill="none" stroke="#f5c842" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 282,255 Q 295,262 290,278" fill="none" stroke="#f5c842" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Neck -->
+  <rect x="243" y="215" width="14" height="16" rx="4" fill="#f5c842" opacity="0.9"/>
+
+  <!-- Head -->
+  <ellipse cx="250" cy="203" rx="28" ry="30" fill="#f5c842"/>
+
+  <!-- Hair (flowing, elegant) -->
+  <path d="M 224,195 Q 222,170 240,160 Q 250,155 260,160 Q 278,170 276,195" fill="#1a0e00" opacity="0.0"/>
+  <path d="M 224,198 Q 220,175 235,162 Q 245,154 258,158 Q 272,163 278,180 Q 280,192 276,200" fill="#2d1a00"/>
+  <!-- Hair detail -->
+  <path d="M 236,162 Q 230,175 228,195" fill="none" stroke="#1a0e00" stroke-width="1.5" opacity="0.3"/>
+  <path d="M 250,156 Q 248,170 248,195" fill="none" stroke="#1a0e00" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Face features (minimal, elegant) -->
+  <!-- Eyes -->
+  <ellipse cx="241" cy="202" rx="3" ry="2.5" fill="#1a0e00"/>
+  <ellipse cx="259" cy="202" rx="3" ry="2.5" fill="#1a0e00"/>
+  <!-- Subtle smile -->
+  <path d="M 244,212 Q 250,217 256,212" fill="none" stroke="#1a0e00" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ── BOOKSHELVES in background (window panes) ── -->
+  <!-- Top left pane - shelf suggestion -->
+  <line x1="165" y1="180" x2="244" y2="180" stroke="#f5c842" stroke-width="1.5" opacity="0.25"/>
+  <line x1="165" y1="195" x2="244" y2="195" stroke="#f5c842" stroke-width="1.5" opacity="0.2"/>
+  <line x1="165" y1="210" x2="244" y2="210" stroke="#f5c842" stroke-width="1.5" opacity="0.15"/>
+  <!-- Top right pane -->
+  <line x1="256" y1="180" x2="335" y2="180" stroke="#f5c842" stroke-width="1.5" opacity="0.25"/>
+  <line x1="256" y1="195" x2="335" y2="195" stroke="#f5c842" stroke-width="1.5" opacity="0.2"/>
+  <line x1="256" y1="210" x2="335" y2="210" stroke="#f5c842" stroke-width="1.5" opacity="0.15"/>
+
+  <!-- ── DECORATIVE ELEMENTS ── -->
+
+  <!-- Small dots around the inner ring -->
+  <circle cx="250" cy="32" r="3" fill="#f5c842" opacity="0.6"/>
+  <circle cx="250" cy="468" r="3" fill="#f5c842" opacity="0.6"/>
+
+  <!-- Leaf / branch ornaments on sides (like Starbucks) -->
+  <!-- Left ornament -->
+  <path d="M 45,230 Q 55,220 70,228 Q 60,235 45,230 Z" fill="#f5c842" opacity="0.5"/>
+  <path d="M 42,245 Q 55,238 68,248 Q 56,252 42,245 Z" fill="#f5c842" opacity="0.4"/>
+  <path d="M 45,260 Q 57,255 70,265 Q 58,268 45,260 Z" fill="#f5c842" opacity="0.3"/>
+  <line x1="56" y1="225" x2="56" y2="268" stroke="#f5c842" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Right ornament -->
+  <path d="M 455,230 Q 445,220 430,228 Q 440,235 455,230 Z" fill="#f5c842" opacity="0.5"/>
+  <path d="M 458,245 Q 445,238 432,248 Q 444,252 458,245 Z" fill="#f5c842" opacity="0.4"/>
+  <path d="M 455,260 Q 443,255 430,265 Q 442,268 455,260 Z" fill="#f5c842" opacity="0.3"/>
+  <line x1="444" y1="225" x2="444" y2="268" stroke="#f5c842" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Bottom tagline area -->
+  <text x="250" y="380" font-family="Georgia, serif" font-size="11" font-style="italic" fill="#f5c842" text-anchor="middle" letter-spacing="3" opacity="0.6">Where your next idea starts</text>
+
+  <!-- Small decorative line under tagline -->
+  <line x1="175" y1="390" x2="325" y2="390" stroke="#f5c842" stroke-width="0.8" opacity="0.3"/>
+
+  <!-- Outer glow ring -->
+  <circle cx="250" cy="250" r="243" fill="none" stroke="#f5c842" stroke-width="0.5" opacity="0.2"/>
+
+</svg>
+    </div>
+    <div style="font-family:Georgia,serif;font-size:13px;letter-spacing:6px;text-transform:uppercase;color:rgba(253,246,227,0.4);margin-top:6px">Opening Soon</div>
+  </div>
+  <div style="position:absolute;bottom:36px;left:0;right:0;text-align:center">
+    <div style="font-family:Georgia,serif;font-size:34px;font-weight:900;font-style:italic;color:#f5c842">My Space. Make it yours.</div>
+    <div style="font-family:Georgia,serif;font-size:12px;letter-spacing:5px;color:rgba(253,246,227,0.32);margin-top:10px">WHERE YOUR NEXT IDEA STARTS</div>
+  </div>
+</div>
+
+<!-- PLAY BUTTON -->
+<div class="playbtn" id="playBtn" onclick="startVideo()">
+  <div class="playcircle"><div class="tri"></div></div>
+</div>
+</div>
+
+<div class="prog"><div class="progfill" id="pf"></div></div>
+<div class="dots">
+  <button class="dot active" onclick="goTo(0)"></button>
+  <button class="dot" onclick="goTo(1)"></button>
+  <button class="dot" onclick="goTo(2)"></button>
+  <button class="dot" onclick="goTo(3)"></button>
+  <button class="dot" onclick="goTo(4)"></button>
+</div>
+</div>
+
+<script>
+let cur=0,playing=false,prog=0,timer=null;
+const DUR=5200;
+
+function showScene(i){
+  document.querySelectorAll(".scene").forEach(s=>s.classList.remove("active"));
+  document.getElementById("s"+i).classList.add("active");
+  document.querySelectorAll(".dot").forEach(d=>d.classList.remove("active"));
+  document.querySelectorAll(".dot")[i].classList.add("active");
+}
+
+function startVideo(){
+  document.getElementById("playBtn").classList.add("hidden");
+  playing=true; cur=0; prog=0;
+  showScene(0); runProg();
+}
+
+function runProg(){
+  clearInterval(timer); prog=0;
+  timer=setInterval(()=>{
+    prog+=100/(DUR/100);
+    document.getElementById("pf").style.width=Math.min(prog,100)+"%";
+    if(prog>=100){
+      clearInterval(timer);
+      if(cur<4){cur++;showScene(cur);runProg();}
+      else{document.getElementById("playBtn").classList.remove("hidden");playing=false;}
+    }
+  },100);
+}
+
+function goTo(i){cur=i;prog=0;showScene(i);if(playing)runProg();}
+</script>
+</body>
+</html>
