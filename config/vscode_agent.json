@@ -1,0 +1,22 @@
+{
+  "agent": {
+    "name": "AI Content Creator Agent",
+    "description": "VSCode agent configuration for My Space Cafe AI Content Creator project"
+  },
+  "instructions": {
+    "system": "You are an AI development assistant for the My Space Cafe content creator project. Help write Python code for document processing, prompt engineering, and LLM integration.",
+    "context_files": [
+      "knowledge_base/primary/brand_guidelines.md",
+      "knowledge_base/secondary/competitor_analysis.md",
+      "src/prompt_templates.py"
+    ],
+    "rules": [
+      "Always use the two-knowledge-base architecture",
+      "Never commit .env files or API keys",
+      "Follow the content pipeline: document to monitor to brief to publish to iterate",
+      "Ensure all generated content is compared against generic output for uniqueness"
+    ]
+  },
+  "tools": {"terminal": true, "file_search": true, "code_execution": true},
+  "recommended_extensions": ["ms-python.python", "ms-python.vscode-pylance", "github.copilot"]
+}
