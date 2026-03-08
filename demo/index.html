@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Space Cafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--brown:#1a0e00;--espresso:#2d1a00;--yellow:#f5c842;--cream:#fdf6e3;--warm:#f0e6d0;--text:#1a0e00;--muted:#7a6a55}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 4rem;background:var(--brown);border-bottom:2px solid var(--yellow)}
+.nav-logo{display:flex;align-items:center;gap:0.8rem;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--yellow);text-decoration:none}
+.nav-logo img{width:48px;height:48px;border-radius:50%}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--yellow)}
+.hero{min-height:100vh;background:var(--brown);display:grid;grid-template-columns:1fr 1fr;padding-top:5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(245,200,66,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 6rem;animation:fadeUp 1s ease both}
+.hero-eyebrow{font-size:0.75rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.5rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,5rem);font-weight:900;line-height:1.05;color:var(--cream);margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:var(--yellow)}
+.hero-sub{font-size:1.1rem;line-height:1.7;color:rgba(253,246,227,0.65);max-width:420px;margin-bottom:3rem}
+.hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--yellow);color:var(--brown);padding:1rem 2.2rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;letter-spacing:0.05em;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,66,0.3)}
+.btn-outline{background:transparent;color:var(--cream);padding:1rem 2.2rem;border:1px solid rgba(253,246,227,0.3);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.btn-outline:hover{border-color:var(--yellow);color:var(--yellow)}
+.hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:5rem 4rem;animation:fadeUp 1s ease 0.2s both}
+.hero-emblem{width:260px;height:260px;border-radius:50%;animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(245,200,66,0.15)}50%{box-shadow:0 0 80px rgba(245,200,66,0.35)}}
+.hero-card{background:var(--espresso);border:1px solid rgba(245,200,66,0.2);padding:2.5rem;max-width:340px;position:relative}
+.hero-card::before{content:'"';position:absolute;top:-1rem;left:2rem;font-family:'Playfair Display',serif;font-size:6rem;color:var(--yellow);opacity:0.3;line-height:1}
+.hero-card p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;line-height:1.7;color:var(--cream);margin-bottom:1rem}
+.hero-card-author{font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow)}
+.tagline-band{background:var(--yellow);padding:1.2rem 0;overflow:hidden}
+.tagline-inner{display:flex;gap:4rem;animation:marquee 20s linear infinite;white-space:nowrap}
+.tagline-item{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;font-style:italic;color:var(--brown);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.about{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
+.about-left{background:var(--warm);padding:7rem 5rem;display:flex;flex-direction:column;justify-content:center}
+.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:1.5rem}
+.section-title em{font-style:italic;color:var(--muted)}
+.about-text{font-size:1.05rem;line-height:1.8;color:var(--muted);max-width:460px}
+.about-right{background:var(--espresso);padding:7rem 5rem;display:flex;flex-direction:column;justify-content:center;gap:3rem}
+.stat-number{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--yellow);line-height:1}
+.stat-label{font-size:0.85rem;color:rgba(253,246,227,0.6);margin-top:0.3rem;letter-spacing:0.05em}
+.features{padding:8rem 6rem;background:var(--cream)}
+.features-header{text-align:center;margin-bottom:5rem}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.feature-card{background:var(--warm);padding:3rem 2.5rem;transition:background 0.3s;cursor:default}
+.feature-card:hover{background:var(--brown)}
+.feature-card:hover .feature-title{color:var(--yellow)}
+.feature-card:hover .feature-text{color:rgba(253,246,227,0.7)}
+.feature-icon{font-size:2rem;margin-bottom:1.5rem}
+.feature-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.8rem;transition:color 0.3s}
+.feature-text{font-size:0.95rem;line-height:1.7;color:var(--muted);transition:color 0.3s}
+.vs-section{background:var(--brown);padding:8rem 6rem}
+.vs-header{text-align:center;margin-bottom:4rem}
+.vs-table{max-width:800px;margin:0 auto;border:1px solid rgba(245,200,66,0.2)}
+.vs-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(245,200,66,0.1)}
+.vs-row:last-child{border-bottom:none}
+.vs-cell{padding:1.2rem 2rem;font-size:0.9rem;line-height:1.5}
+.vs-row.header .vs-cell{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;color:var(--yellow);border-bottom:2px solid rgba(245,200,66,0.3)}
+.vs-cell.category{color:rgba(253,246,227,0.5);font-size:0.8rem;border-right:1px solid rgba(245,200,66,0.1)}
+.vs-cell.starbucks{color:rgba(253,246,227,0.4)}
+.vs-cell.myspace{color:var(--yellow);font-weight:500}
+.ai-demo{padding:8rem 6rem;background:var(--warm)}
+.ai-demo-header{text-align:center;margin-bottom:4rem}
+.demo-tabs{display:flex;max-width:900px;margin:0 auto 2rem;border:1px solid rgba(26,14,0,0.15)}
+.demo-tab{flex:1;padding:1rem;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);border-right:1px solid rgba(26,14,0,0.15);transition:all 0.2s}
+.demo-tab:last-child{border-right:none}
+.demo-tab.active{background:var(--brown);color:var(--yellow)}
+.tab-panel{display:none}
+.tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px;margin:0 auto}
+.demo-box{padding:2.5rem}
+.demo-box.generic{background:rgba(26,14,0,0.06)}
+.demo-box.ours{background:var(--brown)}
+.demo-box-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;margin-bottom:1rem}
+.demo-box.generic .demo-box-label{color:var(--muted)}
+.demo-box.ours .demo-box-label{color:var(--yellow)}
+.demo-box.generic .demo-box-text{font-size:0.95rem;line-height:1.8;color:var(--muted)}
+.demo-box.ours .demo-box-text{font-size:0.95rem;line-height:1.8;color:var(--cream)}
+.menu{padding:8rem 6rem;background:var(--cream)}
+.menu-header{text-align:center;margin-bottom:4rem}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.menu-card{text-align:center;padding:2.5rem 1.5rem;border:1px solid rgba(26,14,0,0.1);transition:border-color 0.2s,transform 0.2s}
+.menu-card:hover{border-color:var(--yellow);transform:translateY(-4px)}
+.menu-emoji{font-size:2.5rem;margin-bottom:1rem}
+.menu-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem}
+.menu-desc{font-size:0.85rem;color:var(--muted);margin-bottom:0.8rem}
+.menu-price{font-size:0.9rem;font-weight:500;color:var(--brown)}
+.cta-section{background:var(--yellow);padding:8rem 6rem;text-align:center}
+.cta-sub{font-size:1.1rem;color:var(--espresso);opacity:0.7;margin:1.5rem auto 3rem;max-width:500px;line-height:1.7}
+.btn-dark{background:var(--brown);color:var(--yellow);padding:1.2rem 3rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;text-decoration:none;display:inline-block;transition:transform 0.2s,box-shadow 0.2s}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(26,14,0,0.25)}
+footer{background:var(--brown);padding:3rem 6rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(245,200,66,0.2)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--yellow)}
+.footer-text{font-size:0.8rem;color:rgba(253,246,227,0.4)}
+.footer-tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:rgba(253,246,227,0.5)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){nav{padding:1rem 2rem}.nav-links{display:none}.hero{grid-template-columns:1fr}.hero-right{display:none}.hero-left{padding:4rem 2rem}.about{grid-template-columns:1fr}.about-left,.about-right{padding:4rem 2rem}.features,.vs-section,.ai-demo,.menu,.cta-section{padding:4rem 2rem}.features-grid,.menu-grid{grid-template-columns:1fr 1fr}.tab-panel.active{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="logo-emblem.svg" alt="My Space Cafe"/>
+    My Space
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">The Space</a></li>
+    <li><a href="#ai-demo">AI Content</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Opening Soon</p>
+    <h1 class="hero-title">This is<br><em>My Space.</em><br>Make it yours.</h1>
+    <p class="hero-sub">A cafe-library where young people feel proud, productive, and at home. Not just another coffee stop.</p>
+    <div class="hero-cta">
+      <a href="#visit" class="btn-primary">Find Your Spot</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="logo-emblem.svg" alt="My Space Cafe" class="hero-emblem"/>
+    <div class="hero-card">
+      <p>Four hours disappear here. You will check the time and wonder where it went.</p>
+      <div class="hero-card-author">The My Space Experience</div>
+    </div>
+  </div>
+</section>
+
+<div class="tagline-band">
+  <div class="tagline-inner">
+    <span class="tagline-item">Stay as long as you want</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Free WiFi. Always.</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Power at every seat</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Your table is waiting</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Library meets cafe</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Stay as long as you want</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Free WiFi. Always.</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Power at every seat</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Your table is waiting</span>
+    <span class="tagline-item">*</span>
+    <span class="tagline-item">Library meets cafe</span>
+    <span class="tagline-item">*</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-left reveal">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">We noticed something.<br><em>Young people needed a place.</em></h2>
+    <p class="about-text">Starbucks is efficient. Libraries are quiet. Home is comfortable. But none of them feel like yours.<br><br>My Space is the answer. A cafe designed around the people inside it. Where being there means something. Where you stay because you want to.</p>
+  </div>
+  <div class="about-right reveal">
+    <div class="stat-item"><div class="stat-number">3+</div><div class="stat-label">Average hours spent per visit</div></div>
+    <div class="stat-item"><div class="stat-number">300+</div><div class="stat-label">Curated books in our library zone</div></div>
+    <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Seats with power outlets and free WiFi</div></div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <p class="section-label">The Space</p>
+    <h2 class="section-title">Built for people who are<br><em>going somewhere.</em></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><div class="feature-icon">📚</div><div class="feature-title">Library Zone</div><p class="feature-text">Quiet, focused, warm lighting. Bookshelves line the walls. Designed for deep work and deep thinking.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">💬</div><div class="feature-title">Social Zone</div><p class="feature-text">Collaborative tables, gentle background energy. Perfect for group work, casual catch-ups, or creative sessions.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🪟</div><div class="feature-title">Window Seats</div><p class="feature-text">The ones you will post on Instagram. Natural light, a view, and the feeling that this moment is worth capturing.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">⚡</div><div class="feature-title">Power Everywhere</div><p class="feature-text">Every seat has a power outlet. Fast, free WiFi throughout. Stay as long as your work takes.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">🎵</div><div class="feature-title">Curated Sound</div><p class="feature-text">Lo-fi, jazz, indie playlists. Never random. Never corporate radio. Music that helps you focus or feel.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon">☕</div><div class="feature-title">Specialty Coffee</div><p class="feature-text">Expertly made. Single-origin beans. Because the coffee should be as good as everything else here.</p></div>
+  </div>
+</section>
+
+<section class="vs-section" id="compare">
+  <div class="vs-header reveal">
+    <p class="section-label" style="color:var(--yellow)">The Difference</p>
+    <h2 class="section-title" style="color:var(--cream)">You have outgrown<br><em style="color:var(--yellow)">the drive-through.</em></h2>
+  </div>
+  <div class="vs-table reveal">
+    <div class="vs-row header"><div class="vs-cell category"></div><div class="vs-cell starbucks">Starbucks</div><div class="vs-cell myspace">My Space</div></div>
+    <div class="vs-row"><div class="vs-cell category">Visit Duration</div><div class="vs-cell starbucks">15 min average</div><div class="vs-cell myspace">3+ hours, welcome</div></div>
+    <div class="vs-row"><div class="vs-cell category">Identity Signal</div><div class="vs-cell starbucks">I needed caffeine</div><div class="vs-cell myspace">I have taste</div></div>
+    <div class="vs-row"><div class="vs-cell category">Community Feel</div><div class="vs-cell starbucks">None</div><div class="vs-cell myspace">Central to everything</div></div>
+    <div class="vs-row"><div class="vs-cell category">Study-Friendly</div><div class="vs-cell starbucks">Poor</div><div class="vs-cell myspace">Designed for it</div></div>
+    <div class="vs-row"><div class="vs-cell category">Worth Posting</div><div class="vs-cell starbucks">Everyone has been there</div><div class="vs-cell myspace">Always</div></div>
+  </div>
+</section>
+
+<section class="ai-demo" id="ai-demo">
+  <div class="ai-demo-header reveal">
+    <p class="section-label">AI Content System</p>
+    <h2 class="section-title">Content generated by<br><em>our knowledge-based AI.</em></h2>
+    <p style="color:var(--muted);margin-top:1rem;font-size:0.95rem;">See how our system produces unique brand content vs generic AI output.</p>
+  </div>
+  <div class="demo-tabs reveal">
+    <button class="demo-tab active" onclick="switchTab(event,'instagram')">Instagram</button>
+    <button class="demo-tab" onclick="switchTab(event,'tiktok')">TikTok</button>
+    <button class="demo-tab" onclick="switchTab(event,'story')">Brand Story</button>
+  </div>
+  <div id="tab-instagram" class="tab-panel active">
+    <div class="demo-box generic"><div class="demo-box-label">Generic AI Prompt</div><div class="demo-box-text">Come visit our cozy cafe! We serve premium quality coffee in a welcoming environment. Perfect for coffee lovers who want a great experience. Follow us for updates! #CafeVibes #CoffeeLovers</div></div>
+    <div class="demo-box ours"><div class="demo-box-label">Our Knowledge-Based System</div><div class="demo-box-text">You know that feeling when you find a spot and think this is exactly where I needed to be.<br><br>We built that spot.<br><br>My Space opens soon. Your seat is already waiting.</div></div>
+  </div>
+  <div id="tab-tiktok" class="tab-panel">
+    <div class="demo-box generic"><div class="demo-box-label">Generic AI Prompt</div><div class="demo-box-text">HOOK: Check out this amazing cafe! VIDEO: Show coffee being made, smiling staff, cozy interior. VOICEOVER: Looking for a great place to hang out? Great coffee, great vibes. #CafeVibes</div></div>
+    <div class="demo-box ours"><div class="demo-box-label">Our Knowledge-Based System</div><div class="demo-box-text">HOOK: We did not open another coffee shop.<br><br>VIDEO: Quick cuts, bookshelves, window seats, student with laptop, espresso being pulled.<br><br>VOICEOVER: We opened the place you have been looking for. Where you can stay four hours and no one gives you a look. Where the vibe is actually yours.<br><br>CLOSING: Find your spot. My Space. Open now.</div></div>
+  </div>
+  <div id="tab-story" class="tab-panel">
+    <div class="demo-box generic"><div class="demo-box-label">Generic AI Prompt</div><div class="demo-box-text">We are passionate about coffee and creating a warm welcoming environment. Our team works hard every day to deliver the best-in-class coffee experience. We believe in community.</div></div>
+    <div class="demo-box ours"><div class="demo-box-label">Our Knowledge-Based System</div><div class="demo-box-text">Starbucks is efficient. Libraries are quiet. Home is comfortable. But none of them feel like yours.<br><br>My Space was built for the people who needed somewhere to land. Somewhere that reflects who they are and who they are becoming.<br><br>This is your third place. Come as you are. Stay as long as you need.</div></div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu-header reveal">
+    <p class="section-label">What We Serve</p>
+    <h2 class="section-title">The coffee is as good as<br><em>everything else here.</em></h2>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card reveal"><div class="menu-emoji">☕</div><div class="menu-name">Flat White</div><div class="menu-desc">Single origin. Velvety. The one you will order every time.</div><div class="menu-price">3.80</div></div>
+    <div class="menu-card reveal"><div class="menu-emoji">🧊</div><div class="menu-name">Iced Matcha</div><div class="menu-desc">Ceremonial grade. Oat milk. The window seat drink.</div><div class="menu-price">4.50</div></div>
+    <div class="menu-card reveal"><div class="menu-emoji">🍵</div><div class="menu-name">Pour Over</div><div class="menu-desc">Slow. Intentional. For the long sessions.</div><div class="menu-price">4.20</div></div>
+    <div class="menu-card reveal"><div class="menu-emoji">🥐</div><div class="menu-name">Butter Croissant</div><div class="menu-desc">Baked fresh. Flaky. Pairs with everything.</div><div class="menu-price">2.80</div></div>
+  </div>
+</section>
+
+<section class="cta-section" id="visit">
+  <h2 class="section-title">Your seat is<br><em>waiting for you.</em></h2>
+  <p class="cta-sub">My Space opens soon. Be among the first through the door.</p>
+  <a href="#" class="btn-dark">Join the Waitlist</a>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:0.8rem">
+    <img src="logo-emblem.svg" style="width:40px;height:40px;border-radius:50%"/>
+    <div class="footer-logo">My Space Cafe</div>
+  </div>
+  <div class="footer-tagline">This is My Space. Make it yours.</div>
+  <div class="footer-text">2025 My Space Cafe. All rights reserved.</div>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80)}})},{threshold:0.1});
+reveals.forEach(el=>observer.observe(el));
+function switchTab(event,tab){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <circle cx="250" cy="250" r="245" fill="#1a0e00"/>
+  <circle cx="250" cy="250" r="240" fill="none" stroke="#f5c842" stroke-width="3"/>
+  <circle cx="250" cy="250" r="225" fill="none" stroke="#f5c842" stroke-width="1" opacity="0.4"/>
+  <circle cx="250" cy="250" r="222" fill="#2d1a00"/>
+  <path id="topArc" d="M 60,250 A 190,190 0 0,1 440,250" fill="none"/>
+  <text font-family="Georgia,serif" font-size="22" font-weight="900" fill="#f5c842" letter-spacing="14">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">MY SPACE CAFE</textPath>
+  </text>
+  <path id="bottomArc" d="M 75,265 A 185,185 0 0,0 425,265" fill="none"/>
+  <text font-family="Georgia,serif" font-size="13" fill="#f5c842" letter-spacing="8" opacity="0.8">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">EST. 2025 YOUR CITY</textPath>
+  </text>
+  <g transform="translate(82,258)"><polygon points="0,-7 2,-2 7,-2 3,1 5,7 0,3 -5,7 -3,1 -7,-2 -2,-2" fill="#f5c842"/></g>
+  <g transform="translate(418,258)"><polygon points="0,-7 2,-2 7,-2 3,1 5,7 0,3 -5,7 -3,1 -7,-2 -2,-2" fill="#f5c842"/></g>
+  <rect x="158" y="151" width="184" height="189" rx="3" fill="none" stroke="#f5c842" stroke-width="2.5" opacity="0.5"/>
+  <line x1="250" y1="151" x2="250" y2="340" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="158" y1="245" x2="342" y2="245" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <rect x="168" y="280" width="164" height="6" rx="3" fill="#f5c842"/>
+  <path d="M 205,280 Q 215,265 250,268 Q 285,265 295,280 Z" fill="#fdf6e3" opacity="0.9"/>
+  <line x1="250" y1="268" x2="250" y2="280" stroke="#1a0e00" stroke-width="1.5" opacity="0.6"/>
+  <rect x="298" y="265" width="26" height="15" rx="3" fill="#f5c842" opacity="0.9"/>
+  <path d="M 324,269 Q 334,269 334,275 Q 334,280 324,280" fill="none" stroke="#f5c842" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 313,262 Q 311,254 313,246" fill="none" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 222,278 Q 220,255 218,235 L 250,228 L 282,235 Q 280,255 278,278 Z" fill="#f5c842" opacity="0.85"/>
+  <path d="M 218,255 Q 205,262 210,278" fill="none" stroke="#f5c842" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 282,255 Q 295,262 290,278" fill="none" stroke="#f5c842" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <rect x="243" y="215" width="14" height="16" rx="4" fill="#f5c842" opacity="0.9"/>
+  <ellipse cx="250" cy="203" rx="28" ry="30" fill="#f5c842"/>
+  <path d="M 224,198 Q 220,175 235,162 Q 245,154 258,158 Q 272,163 278,180 Q 280,192 276,200" fill="#2d1a00"/>
+  <ellipse cx="241" cy="202" rx="3" ry="2.5" fill="#1a0e00"/>
+  <ellipse cx="259" cy="202" rx="3" ry="2.5" fill="#1a0e00"/>
+  <path d="M 244,212 Q 250,217 256,212" fill="none" stroke="#1a0e00" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 45,230 Q 55,220 70,228 Q 60,235 45,230 Z" fill="#f5c842" opacity="0.5"/>
+  <path d="M 42,245 Q 55,238 68,248 Q 56,252 42,245 Z" fill="#f5c842" opacity="0.4"/>
+  <path d="M 455,230 Q 445,220 430,228 Q 440,235 455,230 Z" fill="#f5c842" opacity="0.5"/>
+  <path d="M 458,245 Q 445,238 432,248 Q 444,252 458,245 Z" fill="#f5c842" opacity="0.4"/>
+  <text x="250" y="380" font-family="Georgia,serif" font-size="11" font-style="italic" fill="#f5c842" text-anchor="middle" letter-spacing="3" opacity="0.6">Where your next idea starts</text>
+  <line x1="175" y1="390" x2="325" y2="390" stroke="#f5c842" stroke-width="0.8" opacity="0.3"/>
+</svg>
